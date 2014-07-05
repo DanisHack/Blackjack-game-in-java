@@ -10,6 +10,7 @@ import java.util.Random ;
  */
 public class Deck {
 	
+	// cards in the deck --- arraylist or linkedlist could also be used
 	private Cards[] cardsInDeck;
 	private int numOfCardsInDeck;
 	private int onePack = 52;
@@ -52,12 +53,46 @@ public class Deck {
 		
 		//shuffle
 		if(shuffle){
-			this.shuffle();
+			this.shuffleDeck();
 		}
 	}
 	
-	public boolean shuffle(){
+	
+	// custom shuffle function--if <list> was used, it has a shuffle method build in
+	public void shuffleDeck(){
 		
+		Random rng = new Random();
 		
+		Cards temp;
+		
+		// swapping
+		
+		int j;
+		for(int i=0; i<this.numOfCardsInDeck;i++){
+			
+			j = rng.nextInt(this.numOfCardsInDeck);
+			
+			temp = this.cardsInDeck[i];
+			this.cardsInDeck[i] = this.cardsInDeck[j];
+			this.cardsInDeck[j] = temp;	
+		}
+	}
+	
+	
+	// dealing a card from deck
+	public Cards dealingNextCard(){
+		
+		Cards topCard = this.cardsInDeck[0];
+		
+		// remove this card -- if arraylist was used, remove method is build in
+		
+		for(int c =1; c<this.numOfCardsInDeck;c++){
+			this.cardsInDeck[c-1] = this.cardsInDeck[c];
+		}
+		
+		this.cardsInDeck[this.numOfCardsInDeck - 1] = null;
+		this.numOfCardsInDeck--;
+		 
+		return topCard;
 	}
 }
