@@ -60,12 +60,18 @@ public class Players {
 			}
 		}
 		
-		while(handTotal>21 && numAces>0){
-			
+		while(handTotal > 21 && numAces > 0){
+			handTotal -= 10;
+			numAces--;
 		}
-		return 1;
+		
+		return handTotal;
 	}
-	
+
+	public void printCardsInHand(boolean showFirstCard){
+		
+		
+	}
 	
 	
 }
