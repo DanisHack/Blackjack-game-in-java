@@ -96,7 +96,12 @@ public class Deck {
 		return topCard;
 	}
 	
-	public void printDeckCards(){
+	public void printDeckCards(int num){
 		
+		for(int c=0; c<num; c++){
+			System.out.printf("% 3d/%d %s\n", c+1, this.numOfCardsInDeck, this.cardsInDeck[c].toString());
+		}
+		
+		System.out.printf("\t\t[%d other]\n", this.numOfCardsInDeck - num);
 	}
 }
