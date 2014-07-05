@@ -95,4 +95,8 @@ public class Deck {
 		 
 		return topCard;
 	}
+	
+	public void printDeckCards(){
+		
+	}
 }
