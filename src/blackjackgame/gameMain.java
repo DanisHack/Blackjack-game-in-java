@@ -9,7 +9,9 @@ package blackjackgame;
 public class GameMain {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		
+		Deck newDeck = new Deck(2, true);
+		newDeck.printDeckCards(10);
 
 	}
 
