@@ -59,6 +59,10 @@ public class Players {
 				handTotal += cardNum;
 			}
 		}
+		
+		while(handTotal>21 && numAces>0){
+			
+		}
 		return 1;
 	}
 	
