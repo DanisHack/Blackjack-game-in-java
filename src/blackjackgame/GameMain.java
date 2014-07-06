@@ -49,7 +49,7 @@ public class GameMain {
 				answer = sc.next();
 				System.out.println();
 				if(answer.compareToIgnoreCase("H") == 0){
-					
+					you.addCardToPlayersHand(newDeck.dealingNextCard());
 				}
 				
 			}
