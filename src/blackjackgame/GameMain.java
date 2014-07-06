@@ -49,16 +49,36 @@ public class GameMain {
 				answer = sc.next();
 				System.out.println();
 				if(answer.compareToIgnoreCase("H") == 0){
-					you.addCardToPlayersHand(newDeck.dealingNextCard());
+					youDone = !you.addCardToPlayersHand(newDeck.dealingNextCard());
+					you.printCardsInHand(true);
+				}
+				else{
+					youDone = true;
 				}
 				
 			}
+			
+			if(!dealerDone){
+				if(dealer.getPlayersHandTotal() < 17){
+					
+					System.out.println("dealer hits \n");
+					dealerDone = !dealer.addCardToPlayersHand(newDeck.dealingNextCard());
+					dealer.printCardsInHand(false);
+				}
+				else{
+					System.out.println("dealer stays \n");
+					dealerDone = true;
+				}
+			}
+			
+			System.out.println();
 		}
 		
+		//closing scanner
+		sc.close();
 		
-		
-		
-		
+		you.printCardsInHand(true);
+		dealer.printCardsInHand(true);
 
 	}
 
