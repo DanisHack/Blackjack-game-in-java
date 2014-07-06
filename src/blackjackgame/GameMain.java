@@ -33,6 +33,22 @@ public class GameMain {
 		you.printCardsInHand(true);
 		System.out.printf("Score:%d\n\n", you.getPlayersHandTotal());
 		
+		// flags- Hit, Stand
+		
+		boolean youDone = false;
+		boolean dealerDone = false;
+		
+		String answer;
+		
+		if(!youDone && !dealerDone){
+			
+			if(!youDone){
+				
+				System
+				
+			}
+		}
+		
 		
 		
 		
