@@ -21,6 +21,21 @@ public class GameMain {
 		Players you = new Players("Danish Mohd");
 		Players dealer = new Players("Dealer");
 		
+		// distributing initial cards
+		you.addCardToPlayersHand(newDeck.dealingNextCard());
+		dealer.addCardToPlayersHand(newDeck.dealingNextCard());
+		you.addCardToPlayersHand(newDeck.dealingNextCard());
+		dealer.addCardToPlayersHand(newDeck.dealingNextCard());
+		
+		// dealt initial hands
+		System.out.println("******Cards Dealt*****\n");
+		dealer.printCardsInHand(false);
+		you.printCardsInHand(true);
+		System.out.printf("Score:%d\n\n", you.getPlayersHandTotal());
+		
+		
+		
+		
 		
 
 	}
