@@ -40,11 +40,17 @@ public class GameMain {
 		
 		String answer;
 		
-		if(!youDone && !dealerDone){
+		while(!youDone || !dealerDone){
 			
+			//
 			if(!youDone){
 				
-				System
+				System.out.print("Hit or Stay? [Enter H or S]");
+				answer = sc.next();
+				System.out.println();
+				if(answer.compareToIgnoreCase("H") == 0){
+					
+				}
 				
 			}
 		}
