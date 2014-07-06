@@ -70,7 +70,17 @@ public class Players {
 
 	public void printCardsInHand(boolean showFirstCard){
 		
-		
+		System.out.printf("%s's cards in hand\n\n", this.playerName);
+		for(int c=0; c<this.numCardsInHand;c++){
+			
+			if(!showFirstCard && c==0){
+				System.out.printf("\t[hidden]\n");
+			}
+			else{
+				System.out.printf("\t%s\n", this.playerHand[c]);
+			}
+			
+		}
 	}
 	
 	
