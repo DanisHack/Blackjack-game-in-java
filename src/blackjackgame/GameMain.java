@@ -79,6 +79,16 @@ public class GameMain {
 		
 		you.printCardsInHand(true);
 		dealer.printCardsInHand(true);
+		
+		int youSum = you.getPlayersHandTotal();
+		int dealerSum = dealer.getPlayersHandTotal();
+		
+		if(youSum>dealerSum && youSum<=21 || dealerSum >21){
+			System.out.println("You win!! \n");
+		}
+		else{
+			System.out.println("dealer wins!! \n");
+		}
 
 	}
 
