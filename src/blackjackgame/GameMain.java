@@ -27,22 +27,30 @@ public class GameMain {
 		you.addCardToPlayersHand(newDeck.dealingNextCard());
 		dealer.addCardToPlayersHand(newDeck.dealingNextCard());
 		
+		boolean youDone = false;
+		boolean dealerDone = false;
+		
 		// dealt initial hands
 		System.out.println("******Cards Dealt*****\n");
 		dealer.printCardsInHand(false);
 		you.printCardsInHand(true);
 		System.out.printf("Your Score:%d\n\n", you.getPlayersHandTotal());
+		
+		
+		// when game starts
 		if(you.getPlayersHandTotal()>21){
 			System.out.println("Busted!!\n");
+			youDone = true;
+			dealerDone = true;
 		}
 		else if(you.getPlayersHandTotal() == 21){
 			System.out.println("Hurray! BlackJack. you won");
+			 youDone = true;
+			 dealerDone = true;
 		}
 		
 		// flags- Hit, Stand
 		
-		boolean youDone = false;
-		boolean dealerDone = false;
 		
 		String answer;
 		
