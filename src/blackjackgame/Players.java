@@ -44,12 +44,12 @@ public class Players {
 		int cardNum;
 		int numAces = 0;
 		
-		//System.out.printf("%d\n ", this.numCardsInHand);
+		//System.out.printf("getPlayersHandTotal :%d\n ", this.numCardsInHand);
 		
 		for(int c =0; c<this.numCardsInHand;c++){
 			
 			cardNum = this.playerHand[c].getCardNumber();
-			//System.out.printf("%s\n%d", this.playerHand[c], cardNum);
+			//System.out.printf("getPlayersHandTotal: %s\n%d", this.playerHand[c], cardNum);
 			
 			if(cardNum == 1){ // Ace
 				numAces++;
