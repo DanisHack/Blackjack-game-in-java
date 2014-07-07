@@ -91,7 +91,7 @@ public class GameMain {
 					
 					System.out.println("dealer hits \n");
 					dealerDone = !dealer.addCardToPlayersHand(newDeck.dealingNextCard());
-					dealer.printCardsInHand(false);
+					dealer.printCardsInHand(true);
 				}
 				else{
 					System.out.println("dealer stays \n");
