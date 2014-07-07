@@ -12,21 +12,21 @@ public class Cards {
 	
 	private Suits cardSuit;
 	private int cardNum;
-	private String[] numString = {"Ace", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Jack", "Queen", "King"};
+	private String[] numString = {"Ace", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Jack", "Queen", "King"};
 	
 	/**
 	 * Cards constructor
 	 * @param sType
 	 * @param sNum
 	 */
-	public Cards(Suits type, int num){
+	public Cards(Suits stype, int snum){
 		 
-		this.cardSuit = type;
+		this.cardSuit = stype;
 		
-		if(num >=1 && num <= 13)
-			this.cardNum  = num;
+		if(snum >=1 && snum <= 13)
+			this.cardNum  = snum;
 		else{
-			System.err.println(num+" is not a valid card number\n");
+			System.err.println(snum+" is not a valid card number\n");
 			System.exit(1);
 		}
 	}
