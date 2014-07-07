@@ -71,6 +71,11 @@ public class GameMain {
 					youDone = !you.addCardToPlayersHand(newDeck.dealingNextCard());
 					you.printCardsInHand(true);
 					System.out.printf("Your Score:%d\n\n", you.getPlayersHandTotal());
+					if(you.getPlayersHandTotal()>21){
+						System.out.println("You Busted!!");
+						youDone = true;
+						dealerDone = true;
+					}
 				}
 				else{
 					System.out.println("You Choose to stay, dealer's turn \n");
@@ -112,7 +117,7 @@ public class GameMain {
 			System.out.println("You win!! \n");
 		}
 		else{
-			System.out.println("dealer wins!! \n");
+			System.out.println("You Lose!! \n");
 		}
 
 	}
