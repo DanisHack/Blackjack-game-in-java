@@ -8,6 +8,7 @@ package blackjackgame;
 
 import java.util.Scanner;
 
+//remember to include bet danish
 public class GameMain {
 
 	public static void main(String[] args) {
@@ -37,7 +38,9 @@ public class GameMain {
 		System.out.printf("Your Score:%d\n\n", you.getPlayersHandTotal());
 		
 		
-		// when game starts
+		//Game play starts here
+		
+		
 		if(you.getPlayersHandTotal()>21){
 			System.out.println("Busted!!\n");
 			youDone = true;
@@ -54,6 +57,8 @@ public class GameMain {
 		
 		String answer;
 		
+		
+		
 		while(!youDone || !dealerDone){
 			
 			//
@@ -65,14 +70,14 @@ public class GameMain {
 				if(answer.compareToIgnoreCase("H") == 0){
 					youDone = !you.addCardToPlayersHand(newDeck.dealingNextCard());
 					you.printCardsInHand(true);
+					System.out.printf("Your Score:%d\n\n", you.getPlayersHandTotal());
 				}
 				else{
 					youDone = true;
 				}
 				
 			}
-			
-			if(!dealerDone){
+			else if(!dealerDone){
 				if(dealer.getPlayersHandTotal() < 17){
 					
 					System.out.println("dealer hits \n");
