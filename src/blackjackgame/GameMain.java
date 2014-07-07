@@ -39,7 +39,9 @@ public class GameMain {
 		
 		
 		//Game play starts here
+		// flags- Hit, Stand, Double, Split
 		
+		String answer;
 		
 		if(you.getPlayersHandTotal()>21){
 			System.out.println("Busted!!\n");
@@ -51,12 +53,6 @@ public class GameMain {
 			 youDone = true;
 			 dealerDone = true;
 		}
-		
-		// flags- Hit, Stand
-		
-		
-		String answer;
-		
 		
 		
 		while(!youDone || !dealerDone){
@@ -92,6 +88,12 @@ public class GameMain {
 					System.out.println("dealer hits \n");
 					dealerDone = !dealer.addCardToPlayersHand(newDeck.dealingNextCard());
 					dealer.printCardsInHand(true);
+					System.out.printf("Dealer's Score:%d\n\n", dealer.getPlayersHandTotal());
+					if(dealer.getPlayersHandTotal()>21){
+						System.out.println("Dealer Busted!!");
+						youDone = true;
+						dealerDone = true;
+					}
 				}
 				else{
 					System.out.println("dealer stays \n");
@@ -105,6 +107,8 @@ public class GameMain {
 		//closing scanner
 		sc.close();
 		
+		
+		// Deciding the winner
 		you.printCardsInHand(true);
 		System.out.printf("Your Score:%d\n\n", you.getPlayersHandTotal());
 		dealer.printCardsInHand(true);
