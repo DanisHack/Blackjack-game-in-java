@@ -116,6 +116,9 @@ public class GameMain {
 		if(youSum>dealerSum && youSum<=21 || dealerSum >21){
 			System.out.println("You win!! \n");
 		}
+		else if(youSum == dealerSum){
+			System.out.println("PUSH!!!");
+		}
 		else{
 			System.out.println("You Lose!! \n");
 		}
