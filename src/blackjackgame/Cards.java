@@ -12,7 +12,7 @@ public class Cards {
 	
 	private Suits cardSuit;
 	private int cardNum;
-	private String[] numString = {"Ace", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Jack", "Queen", "King"};
+	private String[] numString = {"Ace", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Jack", "Queen", "King"};
 	
 	/**
 	 * Cards constructor
