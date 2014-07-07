@@ -73,11 +73,15 @@ public class GameMain {
 					System.out.printf("Your Score:%d\n\n", you.getPlayersHandTotal());
 				}
 				else{
+					System.out.println("You Choose to stay, dealer's turn \n");
 					youDone = true;
 				}
 				
 			}
 			else if(!dealerDone){
+				
+				dealer.printCardsInHand(true);
+				System.out.printf("Dealer's Score:%d\n\n", dealer.getPlayersHandTotal());
 				if(dealer.getPlayersHandTotal() < 17){
 					
 					System.out.println("dealer hits \n");
@@ -97,7 +101,9 @@ public class GameMain {
 		sc.close();
 		
 		you.printCardsInHand(true);
+		System.out.printf("Your Score:%d\n\n", you.getPlayersHandTotal());
 		dealer.printCardsInHand(true);
+		System.out.printf("Dealer's Score:%d\n\n", dealer.getPlayersHandTotal());
 		
 		int youSum = you.getPlayersHandTotal();
 		int dealerSum = dealer.getPlayersHandTotal();
