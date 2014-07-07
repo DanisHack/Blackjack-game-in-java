@@ -31,7 +31,13 @@ public class GameMain {
 		System.out.println("******Cards Dealt*****\n");
 		dealer.printCardsInHand(false);
 		you.printCardsInHand(true);
-		System.out.printf("Score:%d\n\n", you.getPlayersHandTotal());
+		System.out.printf("Your Score:%d\n\n", you.getPlayersHandTotal());
+		if(you.getPlayersHandTotal()>21){
+			System.out.println("Busted!!\n");
+		}
+		else if(you.getPlayersHandTotal() == 21){
+			System.out.println("Hurray! BlackJack. you won");
+		}
 		
 		// flags- Hit, Stand
 		
