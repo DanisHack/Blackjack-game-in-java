@@ -17,10 +17,18 @@ public class GameMain {
 		Scanner sc = new Scanner(System.in);
 		Deck newDeck = new Deck(2, true);
 		
+		System.out.println("Enter Your Name:\n");
+		String playerName = sc.next();
 		
 		//players init
-		Players you = new Players("Danish Mohd");
+		Players you = new Players(playerName);
 		Players dealer = new Players("Dealer");
+		
+		System.out.println("You get 100 chips for playing");
+		int balance = 100;
+		
+		System.out.println("Enter your bet");
+		int bet = sc.nextInt();
 		
 		// distributing initial cards
 		you.addCardToPlayersHand(newDeck.dealingNextCard());
