@@ -15,7 +15,7 @@ public class GameMain {
 		
 		//game init
 		Scanner sc = new Scanner(System.in);
-		Deck newDeck = new Deck(2, true);
+		Deck newDeck = new Deck(4, true);
 		
 		System.out.println("Enter Your Name:\n");
 		String playerName = sc.next();
@@ -24,11 +24,19 @@ public class GameMain {
 		Players you = new Players(playerName);
 		Players dealer = new Players("Dealer");
 		
-		System.out.println("You get 100 chips for playing");
+		System.out.println(you+", you got 100 complimentary chips for playing");
 		int balance = 100;
+		boolean gameOver = false;
 		
-		System.out.println("Enter your bet");
-		int bet = sc.nextInt();
+		while(balance > 0 &&  !gameOver){
+			
+			System.out.println("Enter your bet for this game");
+			int bet = sc.nextInt();
+			balance = balance - bet;
+			
+		}
+		
+		
 		
 		// distributing initial cards
 		you.addCardToPlayersHand(newDeck.dealingNextCard());
