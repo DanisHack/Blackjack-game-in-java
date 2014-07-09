@@ -24,7 +24,7 @@ public class GameMain {
 		
 		
 		System.out.println(playerName+", you got 100 complimentary chips for playing");
-		float balance = 100;
+		int balance = 100;
 		boolean gameOver = false;
 		
 		
@@ -42,19 +42,19 @@ public class GameMain {
 			String de = sc.next();
 			if(de.compareToIgnoreCase("D") == 0){
 				
-				float bet = 0 ;
+				int bet = 0 ;
+				String msg = "Enter your bet for this game";
 				while(bet<=0){
 					
 					try{
-						System.out.println("Enter your bet for this game");
-						bet = sc.nextFloat();
+						System.out.println(msg);
+						bet = sc.nextInt();
 					}catch(InputMismatchException e){
 						//System.err.println("Caught InputMismatchException: " +  e.getMessage());
 						//throw e;
 						sc.nextLine();
 					}finally{
-						System.out.println("Enter your bet in Integers please");
-						//bet = sc.nextFloat();
+						msg = "Enter your bet in Integers please";
 					}	
 				}
 				
@@ -82,8 +82,8 @@ public class GameMain {
 					dealer.printCardsInHand(false);
 					you.printCardsInHand(true);
 					System.out.printf("Your Score:%d\t", you.getPlayersHandTotal());
-					System.out.printf("Bet:%.0f\t", bet);
-					System.out.printf("Balance:%.0f\n\n", balance);
+					System.out.printf("Bet:%d\t", bet);
+					System.out.printf("Balance:%d\n\n", balance);
 					
 					//Game play starts here
 					// flags- Hit, Stand, Double, Split
@@ -114,8 +114,8 @@ public class GameMain {
 								youDone = !you.addCardToPlayersHand(newDeck.dealingNextCard());
 								you.printCardsInHand(true);
 								System.out.printf("Your Score:%d\t", you.getPlayersHandTotal());
-								System.out.printf("Bet:%.0f\t", bet);
-								System.out.printf("Balance:%.0f\n\n", balance);
+								System.out.printf("Bet:%d\t", bet);
+								System.out.printf("Balance:%d\n\n", balance);
 								
 								if(you.getPlayersHandTotal()>21){
 									System.out.println("You BUSTED!!");
@@ -163,21 +163,21 @@ public class GameMain {
 					
 					if(youSum>dealerSum && youSum<=21 || dealerSum >21){
 						System.out.println("You win!! \n");
-						System.out.printf("Your Bet was :%.0f\t", bet);
-						System.out.printf("Your Balance was:%.0f\n", balance);
-						System.out.printf("You win :%.0f\t", bet+bet);
+						System.out.printf("Your Bet was :%d\t", bet);
+						System.out.printf("Your Balance was:%d\n", balance);
+						System.out.printf("You win :%d\t", bet+bet);
 						balance = balance + bet + bet;
-						System.out.printf("Your Current Balance:%.0f\n", balance);
+						System.out.printf("Your Current Balance:%d\n", balance);
 						
 					}
 					else if(youSum == dealerSum){
 						System.out.println("PUSH!!!");
 						balance = balance + bet;
-						System.out.printf("Your Current Balance:%.0f\n", balance);
+						System.out.printf("Your Current Balance:%d\n", balance);
 					}
 					else{
 						System.out.println("You Lose!! \n");
-						System.out.printf("Your Current Balance:%.0f\n", balance);
+						System.out.printf("Your Current Balance:%d\n", balance);
 					}
 					
 				}
