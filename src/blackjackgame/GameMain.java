@@ -115,35 +115,30 @@ public class GameMain {
 						}
 						else if(!dealerDone){
 							
-							dealer.printCardsInHand(true);
-							System.out.printf("Dealer's Score:%d\n\n", dealer.getPlayersHandTotal());
+							
 							if(dealer.getPlayersHandTotal() < 17){
-								
-								System.out.println("dealer hits \n");
-								dealerDone = !dealer.addCardToPlayersHand(newDeck.dealingNextCard());
 								dealer.printCardsInHand(true);
 								System.out.printf("Dealer's Score:%d\n\n", dealer.getPlayersHandTotal());
+								System.out.println("Dealer hits \n");
+								dealerDone = !dealer.addCardToPlayersHand(newDeck.dealingNextCard());
+								
 								if(dealer.getPlayersHandTotal()>21){
+									dealer.printCardsInHand(true);
+									System.out.printf("Dealer's Score:%d\n\n", dealer.getPlayersHandTotal());
 									System.out.println("Dealer BUSTED!!");
-									youDone = true;
 									dealerDone = true;
 								}
 							}
 							else{
-								System.out.println("dealer stays \n");
+								dealer.printCardsInHand(true);
+								System.out.printf("Dealer's Score:%d\n\n", dealer.getPlayersHandTotal());
+								System.out.println("Dealer stays \n");
 								dealerDone = true;
 							}
 						}
 						
 						System.out.println();
 					}
-					
-					
-//					// Deciding the winner
-//					you.printCardsInHand(true);
-//					System.out.printf("Your Score:%d\n\n", you.getPlayersHandTotal());
-//					dealer.printCardsInHand(true);
-//					System.out.printf("Dealer's Score:%d\n\n", dealer.getPlayersHandTotal());
 					
 					int youSum = you.getPlayersHandTotal();
 					int dealerSum = dealer.getPlayersHandTotal();
