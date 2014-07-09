@@ -7,6 +7,7 @@ package blackjackgame;
  */
 
 import java.util.Scanner;
+import java.util.InputMismatchException;
 
 //remember to include bet danish
 public class GameMain {
@@ -41,8 +42,23 @@ public class GameMain {
 			String de = sc.next();
 			if(de.compareToIgnoreCase("D") == 0){
 				
-				System.out.println("Enter your bet for this game");
-				float bet = sc.nextFloat();
+				float bet = 0 ;
+				while(bet<=0){
+					
+					try{
+						System.out.println("Enter your bet for this game");
+						bet = sc.nextFloat();
+					}catch(InputMismatchException e){
+						//System.err.println("Caught InputMismatchException: " +  e.getMessage());
+						//throw e;
+						sc.nextLine();
+					}finally{
+						System.out.println("Enter your bet in Integers please");
+						//bet = sc.nextFloat();
+					}	
+				}
+				
+				
 				if((bet >= 1) && (bet%1 == 0) && (balance-bet>=0)){
 					
 					balance = balance - bet;
@@ -103,6 +119,8 @@ public class GameMain {
 								
 								if(you.getPlayersHandTotal()>21){
 									System.out.println("You BUSTED!!");
+									dealer.printCardsInHand(true);
+									System.out.printf("Dealer's Score:%d\n\n", dealer.getPlayersHandTotal());
 									youDone = true;
 									dealerDone = true;
 								}
