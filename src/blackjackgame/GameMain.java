@@ -26,9 +26,11 @@ public class GameMain {
 		float balance = 100;
 		boolean gameOver = false;
 		
+		
 		//players init
 		Players you = new Players(playerName);
 		Players dealer = new Players("Dealer");
+		
 		
 		
 		
@@ -44,6 +46,10 @@ public class GameMain {
 				if((bet >= 1) && (bet%1 == 0) && (balance-bet>=0)){
 					
 					balance = balance - bet;
+					
+					// fresh start
+					you.emptyHand();
+					dealer.emptyHand();
 					
 					boolean youDone = false;
 					boolean dealerDone = false;
@@ -91,9 +97,12 @@ public class GameMain {
 							if(answer.compareToIgnoreCase("H") == 0){
 								youDone = !you.addCardToPlayersHand(newDeck.dealingNextCard());
 								you.printCardsInHand(true);
-								System.out.printf("Your Score:%d\n\n", you.getPlayersHandTotal());
+								System.out.printf("Your Score:%d\t", you.getPlayersHandTotal());
+								System.out.printf("Bet:%.0f\t", bet);
+								System.out.printf("Balance:%.0f\n\n", balance);
+								
 								if(you.getPlayersHandTotal()>21){
-									System.out.println("You Busted!!");
+									System.out.println("You BUSTED!!");
 									youDone = true;
 									dealerDone = true;
 								}
@@ -115,7 +124,7 @@ public class GameMain {
 								dealer.printCardsInHand(true);
 								System.out.printf("Dealer's Score:%d\n\n", dealer.getPlayersHandTotal());
 								if(dealer.getPlayersHandTotal()>21){
-									System.out.println("Dealer Busted!!");
+									System.out.println("Dealer BUSTED!!");
 									youDone = true;
 									dealerDone = true;
 								}
@@ -130,27 +139,32 @@ public class GameMain {
 					}
 					
 					
-					//closing scanner
-					sc.close();
-					
-					
-					// Deciding the winner
-					you.printCardsInHand(true);
-					System.out.printf("Your Score:%d\n\n", you.getPlayersHandTotal());
-					dealer.printCardsInHand(true);
-					System.out.printf("Dealer's Score:%d\n\n", dealer.getPlayersHandTotal());
+//					// Deciding the winner
+//					you.printCardsInHand(true);
+//					System.out.printf("Your Score:%d\n\n", you.getPlayersHandTotal());
+//					dealer.printCardsInHand(true);
+//					System.out.printf("Dealer's Score:%d\n\n", dealer.getPlayersHandTotal());
 					
 					int youSum = you.getPlayersHandTotal();
 					int dealerSum = dealer.getPlayersHandTotal();
 					
 					if(youSum>dealerSum && youSum<=21 || dealerSum >21){
 						System.out.println("You win!! \n");
+						System.out.printf("Your Bet was :%.0f\t", bet);
+						System.out.printf("Your Balance was:%.0f\n", balance);
+						System.out.printf("You win :%.0f\t", bet+bet);
+						balance = balance + bet + bet;
+						System.out.printf("Your Current Balance:%.0f\n", balance);
+						
 					}
 					else if(youSum == dealerSum){
 						System.out.println("PUSH!!!");
+						balance = balance + bet;
+						System.out.printf("Your Current Balance:%.0f\n", balance);
 					}
 					else{
 						System.out.println("You Lose!! \n");
+						System.out.printf("Your Current Balance:%.0f\n", balance);
 					}
 					
 				}
@@ -164,6 +178,9 @@ public class GameMain {
 			}	
 		}
 		
+		
+		//closing scanner
+		sc.close();
 		System.out.println(playerName+", game ended---> run again to play");
 
 	}
