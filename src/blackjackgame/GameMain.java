@@ -24,7 +24,7 @@ public class GameMain {
 		
 		
 		
-		System.out.println("\nCongratulations!! "+playerName+", you got 100 complimentary chips for playing. Enjoy!\n");
+		System.out.println("\nCongratulations!! "+playerName+", you have got 100 complimentary chips for playing. Enjoy!\n");
 		float balance = 100;
 		boolean gameOver = false;
 		
@@ -96,7 +96,7 @@ public class GameMain {
 					String answer;
 					
 					if(you.getPlayersHandTotal()>21){
-						System.out.println("Busted!!\n");
+						System.out.println("\tBusted!!\n");
 						youDone = true;
 						dealerDone = true;
 					}
@@ -106,7 +106,7 @@ public class GameMain {
 						 dealerDone = true;
 						 blackjack = true;
 						 if(you.getPlayersHandTotal() > dealer.getPlayersHandTotal() || dealer.getPlayersHandTotal()>21){
-							 System.out.println("Hurray! BlackJack. you WON!!!");
+							 System.out.println("\tHurray! BlackJack. you WON!!!");
 							 dealer.printCardsInHand(true);
 							 System.out.printf("Dealer's Score:%d\n\n", dealer.getPlayersHandTotal()); 
 							 System.out.printf("Your Bet was :$%.0f\t", bet);
@@ -116,7 +116,7 @@ public class GameMain {
 							 System.out.printf("Your Current Balance:$%0.1f\n", balance);
 						 }
 						 else{
-							 System.out.println("\nIt could have been a BlackJack for you...\n");
+							 System.out.println("\tIt could have been a BlackJack for you...\n");
 							 
 							 dealer.printCardsInHand(true);
 							 System.out.printf("Dealer's Score:%d\n\n", dealer.getPlayersHandTotal()); 
@@ -136,6 +136,7 @@ public class GameMain {
 							answer = sc.next();
 							System.out.println();
 							if(answer.compareToIgnoreCase("H") == 0){
+								System.out.println("\tYou Choose to Hit.\n");
 								youDone = !you.addCardToPlayersHand(newDeck.dealingNextCard());
 								you.printCardsInHand(true);
 								System.out.printf("Your Score:%d\t", you.getPlayersHandTotal());
@@ -143,7 +144,7 @@ public class GameMain {
 								System.out.printf("Balance:$%.1f\n\n", balance);
 								
 								if(you.getPlayersHandTotal()>21){
-									System.out.println("You BUSTED!!");
+									System.out.println("\tYou BUSTED!!");
 									dealer.printCardsInHand(true);
 									System.out.printf("Dealer's Score:%d\n\n", dealer.getPlayersHandTotal());
 									youDone = true;
@@ -152,10 +153,10 @@ public class GameMain {
 							}
 							else if(answer.compareToIgnoreCase("DD") == 0){
 								
-								System.out.println("You Choose to Double Down, dealer's turn \n");
+								System.out.println("\tYou Choose to Double Down.\n");
 								youDone = you.addCardToPlayersHand(newDeck.dealingNextCard());
-								bet = 2*bet;
 								balance = balance - bet;
+								bet = 2*bet;
 								youDone = true;
 								you.printCardsInHand(true);
 								System.out.printf("Your Score:%d\t", you.getPlayersHandTotal());
@@ -163,16 +164,18 @@ public class GameMain {
 								System.out.printf("Balance:$%.1f\n\n", balance);
 								
 								if(you.getPlayersHandTotal()>21){
-									System.out.println("You BUSTED!!");
+									System.out.println("\tYou BUSTED!!");
 									dealer.printCardsInHand(true);
 									System.out.printf("Dealer's Score:%d\n\n", dealer.getPlayersHandTotal());
 									youDone = true;
 									dealerDone = true;
 								}
 								
+								System.out.println("Now , Dealer's turn \n");
+								
 							}
 							else{
-								System.out.println("You Choose to stay, dealer's turn \n");
+								System.out.println("\tYou Choose to Stay, Dealer's turn \n");
 								youDone = true;
 							}
 							
@@ -183,20 +186,20 @@ public class GameMain {
 							if(dealer.getPlayersHandTotal() < 17){
 								dealer.printCardsInHand(true);
 								System.out.printf("Dealer's Score:%d\n\n", dealer.getPlayersHandTotal());
-								System.out.println("Dealer hits \n");
+								System.out.println("\tDealer Hits \n");
 								dealerDone = !dealer.addCardToPlayersHand(newDeck.dealingNextCard());
 								
 								if(dealer.getPlayersHandTotal()>21){
 									dealer.printCardsInHand(true);
 									System.out.printf("Dealer's Score:%d\n\n", dealer.getPlayersHandTotal());
-									System.out.println("Dealer BUSTED!!");
+									System.out.println("\tDealer BUSTED!!");
 									dealerDone = true;
 								}
 							}
 							else{
 								dealer.printCardsInHand(true);
 								System.out.printf("Dealer's Score:%d\n\n", dealer.getPlayersHandTotal());
-								System.out.println("Dealer stays \n");
+								System.out.println("\tDealer Stays \n");
 								dealerDone = true;
 							}
 						}
@@ -210,7 +213,7 @@ public class GameMain {
 					if(!blackjack){
 						
 						if(youSum>dealerSum && youSum<=21 || dealerSum >21){
-							System.out.println("You WON!! \n");
+							System.out.println("\tYou WON!! \n");
 							System.out.printf("Your Bet was :$%.0f\t", bet);
 							System.out.printf("Your Balance was:$%.1f\n", balance);
 							System.out.printf("You win[1:1] :$%.0f\t", bet);
@@ -219,19 +222,19 @@ public class GameMain {
 							
 						}
 						else if(youSum == dealerSum){
-							System.out.println("PUSH!!!");
+							System.out.println("\t!!!PUSH!!!\n");
 							balance = balance + bet;
 							System.out.printf("Your Current Balance:$%.1f\n", balance);
 						}
 						else{
-							System.out.println("You LOST!! \n");
+							System.out.println("\tYou LOST!! \n");
 							System.out.printf("You lose[1:1]: $%.0f!!\n", bet);
 							System.out.printf("Your Current Balance:$%.1f\n", balance);
 						}	
 					}	
 				}
 				else{
-					System.out.println("Your bet amount is wrong, it should be a natural number and should not exceed your balance");
+					System.out.println("\nYour bet amount is wrong, it should be a natural number and should not exceed your balance");
 					System.out.printf("Your Balance:$%.1f\n\n", balance);
 				}
 			}
@@ -243,7 +246,7 @@ public class GameMain {
 		
 		//closing scanner
 		sc.close();
-		System.out.println(playerName+", game ended---> run again to play");
+		System.out.println("\n"+playerName+", game ended---> run again to play");
 
 	}
 
