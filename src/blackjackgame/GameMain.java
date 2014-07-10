@@ -39,7 +39,7 @@ public class GameMain {
 		// Game 
 		while(balance > 0 &&  !gameOver){
 			
-			System.out.println(playerName+", Do you want to deal or end the game [Enter D or E]??");
+			System.out.println("\n"+playerName+", Do you want to deal or end the game [Enter D or E]??");
 			String de = sc.next();
 			boolean blackjack = false;
 			
@@ -151,9 +151,24 @@ public class GameMain {
 								}
 							}
 							else if(answer.compareToIgnoreCase("DD") == 0){
+								
+								System.out.println("You Choose to Double Down, dealer's turn \n");
 								youDone = you.addCardToPlayersHand(newDeck.dealingNextCard());
 								bet = 2*bet;
 								balance = balance - bet;
+								youDone = true;
+								you.printCardsInHand(true);
+								System.out.printf("Your Score:%d\t", you.getPlayersHandTotal());
+								System.out.printf("Bet:%.0f\t", bet);
+								System.out.printf("Balance:%.1f\n\n", balance);
+								
+								if(you.getPlayersHandTotal()>21){
+									System.out.println("You BUSTED!!");
+									dealer.printCardsInHand(true);
+									System.out.printf("Dealer's Score:%d\n\n", dealer.getPlayersHandTotal());
+									youDone = true;
+									dealerDone = true;
+								}
 								
 							}
 							else{
