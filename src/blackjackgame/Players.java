@@ -4,7 +4,9 @@ public class Players {
 
 	private String playerName;
 	private Cards[] playerHand = new Cards[10];
+	private Cards[] splitHand = new Cards[10];
 	private int numCardsInHand;
+	private int numCardsInSplitHand;
 	
 	
 	public Players(String name){
@@ -91,6 +93,26 @@ public class Players {
 			}
 			
 		}
+	}
+	
+	public boolean splitPossible(){
+		
+		if(this.numCardsInHand == 2 && (this.playerHand[0].getCardNumber() == this.playerHand[1].getCardNumber())){
+			
+			return true;		
+		}
+		else{
+			
+			return false;
+		}
+	}
+	
+	public void splitHands(){
+		
+		this.splitHand[0]  = this.playerHand[1];
+		this.playerHand[1] = null;
+		this.numCardsInHand--;
+		this.numCardsInSplitHand = 1;	
 	}
 	
 	
