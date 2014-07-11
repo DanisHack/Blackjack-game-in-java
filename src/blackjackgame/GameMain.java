@@ -200,6 +200,7 @@ public class GameMain {
 							else if(answer.compareToIgnoreCase("SS") == 0){
 								
 								
+								
 							}
 							else{
 								
