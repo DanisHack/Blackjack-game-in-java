@@ -45,6 +45,7 @@ public class Deck {
 				
 				// for each number
 				for(int n=1;n<=13;n++){
+					
 					this.cardsInDeck[c] = new Cards(Suits.values()[s], n);
 					c++;
 				}
@@ -87,6 +88,7 @@ public class Deck {
 		// remove this card -- if arraylist was used, remove method is build in
 		
 		for(int c =1; c<this.numOfCardsInDeck;c++){
+			
 			this.cardsInDeck[c-1] = this.cardsInDeck[c];
 		}
 		
@@ -99,6 +101,7 @@ public class Deck {
 	public void printDeckCards(int num){
 		
 		for(int c=0; c<num; c++){
+			
 			System.out.printf("% 3d/%d %s\n", c+1, this.numOfCardsInDeck, this.cardsInDeck[c].toString());
 		}
 		
