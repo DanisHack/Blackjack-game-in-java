@@ -4,9 +4,7 @@ public class Players {
 
 	private String playerName;
 	private Cards[] playerHand = new Cards[10];
-	private Cards[] splitHand = new Cards[10];
 	private int numCardsInHand;
-	private int numCardsInSplitHand;
 	
 	
 	public Players(String name){
