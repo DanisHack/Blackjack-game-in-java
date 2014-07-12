@@ -20,6 +20,7 @@ public class Deck {
 	 */
 	
 	public Deck(){
+		
 		this(1, true);
 	}
 	
@@ -54,6 +55,7 @@ public class Deck {
 		
 		//shuffle
 		if(shuffle){
+			
 			this.shuffleDeck();
 		}
 	}
