@@ -105,15 +105,5 @@ public class Players {
 			
 			return false;
 		}
-	}
-	
-	public void splitHands(){
-		
-		this.splitHand[0]  = this.playerHand[1];
-		this.playerHand[1] = null;
-		this.numCardsInHand--;
-		this.numCardsInSplitHand = 1;	
-	}
-	
-	
+	}	
 }
