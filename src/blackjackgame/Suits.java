@@ -8,6 +8,7 @@ package blackjackgame;
  * 
  */
 public enum Suits {
+	
 	Clubs,
 	Diamonds,
 	Hearts,
