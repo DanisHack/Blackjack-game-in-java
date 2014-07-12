@@ -24,17 +24,16 @@ public class GameMain {
 	private boolean doubleDownAllowed;
 	
 	
-	GameMain(){
+	GameMain(String pName){
 		
 		this.balance = 100;
 		this.newDeck = new Deck(4, true);
 		boolean gameOver = false;
+		this.playerName  = pName;
 		
-		System.out.println("Enter Your Name:\n");
-		this.playerName = sc.nextLine();
-		
-		System.out.println("\nCongratulations!! "+this.playerName+", you have got 100 complimentary chips for playing. Enjoy!\n");
-		
+		System.out.println("######################################################################################");
+		System.out.println("# Congratulations!! "+this.playerName+", you have got 100 complimentary chips for playing. Enjoy! #");
+		System.out.println("######################################################################################");
 		// Players init
 		you = new Players(this.playerName);
 		dealer = new Players("Dealer");
@@ -43,7 +42,7 @@ public class GameMain {
 		// Game Starts here --->
 		while(this.balance > 0 &&  !gameOver){
 					
-			System.out.println("\n"+this.playerName+", Do you want to DEAL or END the game [Enter 'D' for DEAL & press any other letter to END the game]??");
+			System.out.println("\n"+this.playerName+", Do you want to DEAL or END the game [D or E]??");
 			String gameInit = sc.next();
 					
 			if(gameInit.compareToIgnoreCase("D") == 0){
@@ -63,7 +62,7 @@ public class GameMain {
 		String Y = sc.next();
 		if(Y.compareToIgnoreCase("Y") == 0){
 			
-			new GameMain();
+			new GameMain(this.playerName);
 		}
 		
 		//closing scanner
@@ -382,6 +381,9 @@ public class GameMain {
 
 	public static void main(String[] args) {
 		
+		Scanner scanner = new Scanner(System.in);
+		String playerName;
+		
 		System.out.println("\n\t\t\t\t#######################################");
 		System.out.println("\t\t\t\t#                                     #");
 		System.out.println("\t\t\t\t#           BLACKJACK 0.1             #");
@@ -389,7 +391,12 @@ public class GameMain {
 		System.out.println("\t\t\t\t#                                     #");
 		System.out.println("\t\t\t\t#######################################\n");
 	
-		new GameMain();
+		System.out.println("Enter Your Name:\n");
+		playerName = scanner.nextLine();
+		
+		new GameMain(playerName);
+		
+		scanner.close();
 	}
 
 }
