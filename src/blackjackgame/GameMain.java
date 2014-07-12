@@ -21,6 +21,7 @@ public class GameMain {
 	private Players dealer;
 	private Players you;
 	private Scanner sc = new Scanner(System.in);
+	private boolean doubleDownAllowed;
 	
 	
 	GameMain(){
@@ -30,19 +31,19 @@ public class GameMain {
 		boolean gameOver = false;
 		
 		System.out.println("Enter Your Name:\n");
-		playerName = sc.next();
+		this.playerName = sc.next();
 		
-		System.out.println("\nCongratulations!! "+playerName+", you have got 100 complimentary chips for playing. Enjoy!\n");
+		System.out.println("\nCongratulations!! "+this.playerName+", you have got 100 complimentary chips for playing. Enjoy!\n");
 		
 		// Players init
-		you = new Players(playerName);
+		you = new Players(this.playerName);
 		dealer = new Players("Dealer");
 		
 		
 		// Game Starts here --->
 		while(this.balance > 0 &&  !gameOver){
 					
-			System.out.println("\n"+playerName+", Do you want to deal or end the game [Enter D or E(or else)]??");
+			System.out.println("\n"+this.playerName+", Do you want to Deal or End the game [Enter D or E((or press any letter to End))]??");
 			String gameInit = sc.next();
 					
 			if(gameInit.compareToIgnoreCase("D") == 0){
@@ -55,6 +56,16 @@ public class GameMain {
 			}	
 		}
 		
+		System.out.println("\n"+this.playerName+", !!!! Game Ended !!!");
+		
+		// To play again
+		System.out.println("\n"+this.playerName+", Do you want to play again [Y or N]");
+		String Y = sc.next();
+		if(Y.compareToIgnoreCase("Y") == 0){
+			
+			new GameMain();
+		}
+		
 		//closing scanner
 		sc.close();
 		
@@ -65,17 +76,18 @@ public class GameMain {
 	private void dealTheGame(){
 		
 		boolean blackjack = false;
-		float bet = 0 ;
+		this.bet = 0 ;
+		this.doubleDownAllowed = true;
 		
-		System.out.printf("\nBalance:$%.1f\n", balance);
+		System.out.printf("\nBalance:$%.1f\n", this.balance);
 		String msg = "Enter your bet for this game:";
 		
-		while(bet<=0){
+		while(this.bet<=0){
 			
 			try{
 				
 				System.out.println("\n"+msg);
-				bet = sc.nextFloat();
+				this.bet = sc.nextFloat();
 			}catch(InputMismatchException e){
 				
 				//System.err.println("Caught InputMismatchException: " +  e.getMessage());
@@ -88,9 +100,9 @@ public class GameMain {
 		}
 		
 		
-		if((bet >= 1) && (bet%1 == 0) && (this.balance-bet>=0)){
+		if((this.bet >= 1) && (this.bet%1 == 0) && (this.balance-this.bet>=0)){
 			
-			this.balance = this.balance - bet;
+			this.balance = this.balance - this.bet;
 			
 			// players start with empty hands
 			you.emptyHand();
@@ -112,8 +124,8 @@ public class GameMain {
 			you.printCardsInHand(true);
 			
 			System.out.printf("Your Score:%d\t", you.getPlayersHandTotal());
-			System.out.printf("Bet:$%.0f\t", bet);
-			System.out.printf("Balance:$%.1f\n\n", balance);
+			System.out.printf("Bet:$%.0f\t", this.bet);
+			System.out.printf("Balance:$%.1f\n\n", this.balance);
 			
 			
 		
@@ -126,7 +138,6 @@ public class GameMain {
 			
 			while(!youDone || !dealerDone){
 			
-				//
 				if(!youDone){
 					
 					this.yourPlay();
@@ -140,31 +151,21 @@ public class GameMain {
 				System.out.println();
 			}
 			
-			
-			
 			if(!blackjack){
 				
-				this.decideWinner();
-					
+				this.decideWinner();		
 			}	
 		}
 		else{
 			
 			System.out.println("\nYour bet amount is wrong, it should be a natural number and should not exceed your balance");
-			System.out.printf("Your Balance:$%.1f\n\n", balance);
+			System.out.printf("Your Balance:$%.1f\n\n", this.balance);
 		}
 		
 	}
 	
 	private boolean checkIfBlackJack(){
 		
-		/*if(you.getPlayersHandTotal() > 21){
-			
-			//System.out.println("\tBusted!!\n");
-			
-			youDone = true;
-			dealerDone = true;
-		}*/
 		boolean blackJack = false;
 		
 		if(you.getPlayersHandTotal() == 21){
@@ -174,16 +175,20 @@ public class GameMain {
 			 
 			 if(you.getPlayersHandTotal() > dealer.getPlayersHandTotal() || dealer.getPlayersHandTotal() > 21){
 				 
-				 System.out.println("\tHurray! BlackJack. you WON!!!");
+				 System.out.println("\t\t\t\t#################################");
+				 System.out.println("\t\t\t\t#                               #");
+				 System.out.println("\t\t\t\t# HURRAY!!...BLACKJACK, YOU WON #");
+				 System.out.println("\t\t\t\t#                               #");
+				 System.out.println("\t\t\t\t#################################\n");
 				 dealer.printCardsInHand(true);
 				 
 				 System.out.printf("Dealer's Score:%d\n\n", dealer.getPlayersHandTotal()); 
-				 System.out.printf("Your Bet was :$%.0f\t", bet);
-				 System.out.printf("Your Balance was:$%.1f\n", balance);
-				 System.out.printf("You win[3:2]:$%.1f\t", (3*bet)/2);
+				 System.out.printf("Your Bet was :$%.0f\t", this.bet);
+				 System.out.printf("Your Balance was:$%.1f\n", this.balance);
+				 System.out.printf("You win[3:2]:$%.1f\t", (3*this.bet)/2);
 				 
-				 balance = balance + (3*bet)/2 + bet;
-				 System.out.printf("Your Current Balance:$%0.1f\n", balance);
+				 this.balance = this.balance + (3*this.bet)/2 + this.bet;
+				 System.out.printf("Your Current Balance:$%0.1f\n", this.balance);
 				 
 				 blackJack = true;
 			 }
@@ -195,10 +200,6 @@ public class GameMain {
 				 System.out.printf("Dealer's Score:%d\n\n", dealer.getPlayersHandTotal()); 
 				 
 				 blackJack = false;
-				 /*System.out.println("!!!PUSH!!!");
-				 
-				 balance = balance + bet;
-				 System.out.printf("Your Current Balance:$%.1f\n", balance);*/
 			 }
 		}
 		
@@ -208,19 +209,19 @@ public class GameMain {
 	private void yourPlay(){
 		
 		String answer;
-		boolean doubleDownAllowed = false;
 		/*
 		 * flags- Hit, Stand, Double, Split
+		 * ---------------------------------
 		 */
-		if(balance >= bet){
+		
+		if(this.balance >= this.bet && this.doubleDownAllowed){
 			
-			doubleDownAllowed = true;
 			System.out.print("Hit or Stay or Double Down? [Enter H or S or DD]");
 		}
 		else{
 			
-			doubleDownAllowed = false;
-			System.out.print("Hit or Stay? [Enter H or S]");
+			this.doubleDownAllowed = false;
+			System.out.print("Hit or Stay? [Enter H or S(or press any letter to Stay)]");
 		}
 		
 		answer = sc.next();
@@ -229,14 +230,16 @@ public class GameMain {
 		if(answer.compareToIgnoreCase("H") == 0){
 			
 			this.hit();
+			this.doubleDownAllowed = false;
 		}
-		else if(answer.compareToIgnoreCase("DD") == 0 && doubleDownAllowed){
+		else if(answer.compareToIgnoreCase("DD") == 0 && this.doubleDownAllowed){
 			
 			this.doubleDown();
 		}
 		else if(answer.compareToIgnoreCase("SS") == 0){
 			
 			//this.split();	
+			this.doubleDownAllowed = false;
 		}
 		else{
 			
@@ -250,12 +253,16 @@ public class GameMain {
 		youDone = !you.addCardToPlayersHand(newDeck.dealingNextCard());
 		you.printCardsInHand(true);
 		System.out.printf("Your Score:%d\t", you.getPlayersHandTotal());
-		System.out.printf("Bet:$%.0f\t", bet);
-		System.out.printf("Balance:$%.1f\n\n", balance);
+		System.out.printf("Bet:$%.0f\t", this.bet);
+		System.out.printf("Balance:$%.1f\n\n", this.balance);
 		
 		if(you.getPlayersHandTotal()>21){
 			
-			System.out.println("\tYou BUSTED!!");
+			System.out.println("\t\t\t\t##############");
+			System.out.println("\t\t\t\t#            #");
+			System.out.println("\t\t\t\t# YOU BUSTED #");
+			System.out.println("\t\t\t\t#            #");
+			System.out.println("\t\t\t\t##############\n");
 			dealer.printCardsInHand(true);
 			System.out.printf("Dealer's Score:%d\n\n", dealer.getPlayersHandTotal());
 			youDone = true;
@@ -273,18 +280,24 @@ public class GameMain {
 	private void doubleDown(){
 		
 		System.out.println("\tYou Choose to Double Down.\n");
+		
 		youDone = you.addCardToPlayersHand(newDeck.dealingNextCard());
-		balance = balance - bet;
-		bet = 2*bet;
+		this.balance = this.balance - this.bet;
+		this.bet = 2*this.bet;
 		youDone = true;
 		you.printCardsInHand(true);
+		
 		System.out.printf("Your Score:%d\t", you.getPlayersHandTotal());
-		System.out.printf("Bet:$%.0f\t", bet);
-		System.out.printf("Balance:$%.1f\n\n", balance);
+		System.out.printf("Bet:$%.0f\t", this.bet);
+		System.out.printf("Balance:$%.1f\n\n", this.balance);
 		
 		if(you.getPlayersHandTotal()>21){
 			
-			System.out.println("\tYou BUSTED!!");
+			System.out.println("\t\t\t\t##############");
+			System.out.println("\t\t\t\t#            #");
+			System.out.println("\t\t\t\t# YOU BUSTED #");
+			System.out.println("\t\t\t\t#            #");
+			System.out.println("\t\t\t\t##############\n");
 			dealer.printCardsInHand(true);
 			System.out.printf("Dealer's Score:%d\n\n", dealer.getPlayersHandTotal());
 			youDone = true;
@@ -307,7 +320,11 @@ public class GameMain {
 				
 				dealer.printCardsInHand(true);
 				System.out.printf("Dealer's Score:%d\n\n", dealer.getPlayersHandTotal());
-				System.out.println("\tDealer BUSTED!!");
+				System.out.println("\t\t\t\t#################");
+				System.out.println("\t\t\t\t#               #");
+				System.out.println("\t\t\t\t# DEALER BUSTED #");
+				System.out.println("\t\t\t\t#               #");
+				System.out.println("\t\t\t\t#################\n");
 				dealerDone = true;
 			}
 		}
@@ -342,35 +359,52 @@ public class GameMain {
 		
 		if(youSum>dealerSum && youSum<=21 || dealerSum >21){
 			
-			System.out.println("\tYou WON!! \n");
-			System.out.printf("Your Bet was :$%.0f\t", bet);
-			System.out.printf("Your Balance was:$%.1f\n", balance);
-			System.out.printf("You win[1:1] :$%.0f\t", bet);
-			balance = balance + bet + bet;
+			System.out.println("\t\t\t\t############");
+			System.out.println("\t\t\t\t#          #");
+			System.out.println("\t\t\t\t# YOU WON  #");
+			System.out.println("\t\t\t\t#          #");
+			System.out.println("\t\t\t\t############\n");
+			System.out.printf("Your Bet was :$%.0f\t", this.bet);
+			System.out.printf("Your Balance was:$%.1f\n", this.balance);
+			System.out.printf("You win[1:1] :$%.0f\t", this.bet);
+			
+			this.balance = this.balance + this.bet + this.bet;
 			System.out.printf("Your Current Balance:$%.1f\n", balance);
 			
 		}
 		else if(youSum == dealerSum){
 			
-			System.out.println("\t!!!PUSH!!!\n");
-			balance = balance + bet;
-			System.out.printf("Your Current Balance:$%.1f\n", balance);
+			System.out.println("\t\t\t\t############");
+			System.out.println("\t\t\t\t#          #");
+			System.out.println("\t\t\t\t#   PUSH   #");
+			System.out.println("\t\t\t\t#          #");
+			System.out.println("\t\t\t\t############\n");
+			this.balance = this.balance + this.bet;
+			System.out.printf("Your Current Balance:$%.1f\n", this.balance);
 		}
 		else{
 			
-			System.out.println("\tYou LOST!! \n");
-			System.out.printf("You lose[1:1]: $%.0f!!\n", bet);
-			System.out.printf("Your Current Balance:$%.1f\n", balance);
+			System.out.println("\t\t\t\t############");
+			System.out.println("\t\t\t\t#          #");
+			System.out.println("\t\t\t\t# YOU LOST #");
+			System.out.println("\t\t\t\t#          #");
+			System.out.println("\t\t\t\t############\n");
+			System.out.printf("You lose[1:1]: $%.0f!!\n", this.bet);
+			System.out.printf("Your Current Balance:$%.1f\n", this.balance);
 		}
 	}
 	
 
 	public static void main(String[] args) {
 		
+		System.out.println("\t\t\t\t#######################################");
+		System.out.println("\t\t\t\t#                                     #");
+		System.out.println("\t\t\t\t#           BLACKJACK 0.1             #");
+		System.out.println("\t\t\t\t# Insight Fellowship Coding Challenge #");
+		System.out.println("\t\t\t\t#                                     #");
+		System.out.println("\t\t\t\t#######################################\n");
+	
 		new GameMain();
-		
-		//System.out.println("\n"+playerName+", game ended---> run again to play");
-
 	}
 
 }
