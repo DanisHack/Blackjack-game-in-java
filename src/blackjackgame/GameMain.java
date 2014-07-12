@@ -128,14 +128,14 @@ public class GameMain {
 			// checking state on initial card -- if BlackJack
 			blackjack = this.checkIfBlackJack();
 			
-			while(!youDone || !dealerDone){
+			while(!this.youDone || !this.dealerDone){
 			
-				if(!youDone){
+				if(!this.youDone){
 					
 					this.yourPlay();
 					
 				}
-				else if(!dealerDone){
+				else if(!this.dealerDone){
 					
 					this.dealersPlay();
 				}
@@ -163,8 +163,8 @@ public class GameMain {
 		
 		if(you.getPlayersHandTotal() == 21){
 			
-			 youDone = true;
-			 dealerDone = true;
+			 this.youDone = true;
+			 this.dealerDone = true;
 			 
 			 if(you.getPlayersHandTotal() > dealer.getPlayersHandTotal() || dealer.getPlayersHandTotal() > 21){
 				 
@@ -173,6 +173,7 @@ public class GameMain {
 				 System.out.println("\t\t\t\t# HURRAY!!...BLACKJACK, YOU WON #");
 				 System.out.println("\t\t\t\t#                               #");
 				 System.out.println("\t\t\t\t#################################\n");
+				 
 				 dealer.printCardsInHand(true);
 				 
 				 System.out.printf("Dealer's Score:%d\n\n", dealer.getPlayersHandTotal()); 
@@ -194,6 +195,20 @@ public class GameMain {
 				 
 				 blackJack = false;
 			 }
+		}
+		else if(dealer.getPlayersHandTotal() == 21){
+			
+			dealer.printCardsInHand(true);
+			System.out.printf("Dealer's Score:%d\n\n", dealer.getPlayersHandTotal());
+			
+			System.out.println("\t\t\t\t#################################");
+			System.out.println("\t\t\t\t#                               #");
+			System.out.println("\t\t\t\t# DEALER's BLACKJACK, YOU LOST  #");
+			System.out.println("\t\t\t\t#                               #");
+			System.out.println("\t\t\t\t#################################\n");
+			
+			this.dealerDone = true;
+			blackJack = false;
 		}
 		
 		return blackJack;
@@ -364,17 +379,6 @@ public class GameMain {
 			System.out.println("\t\t\t\t#          #");
 			System.out.println("\t\t\t\t############\n");
 			this.balance = this.balance + this.bet;
-			System.out.printf("Your Current Balance:$%.1f\n", this.balance);
-		}
-		else if(dealerSum == 21){
-			
-			System.out.println("\t\t\t\t#################################");
-			System.out.println("\t\t\t\t#                               #");
-			System.out.println("\t\t\t\t# DEALER's BLACKJACK, YOU LOST  #");
-			System.out.println("\t\t\t\t#                               #");
-			System.out.println("\t\t\t\t#################################\n");
-				 
-			System.out.printf("You lose[1:1]: $%.0f!!\n", this.bet);
 			System.out.printf("Your Current Balance:$%.1f\n", this.balance);
 		}
 		else{
