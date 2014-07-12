@@ -36,5 +36,17 @@ Note:
 •	Each chip is $1.
 •	The player may double down on any initial two card hand. 
 
+Design:
+======
+
+Suits.java -- enum (Clubs, Diamonds, Hearts, Spades)
+
+Cards.java -- Cards class initialises a card in deck and uses Suits class for each card.
+
+Deck.java -- This class initialises a Deck which includes many (52 or more) cards (from Cards class).
+
+Players.java -- This class initialises a Player and deals cards from Deck etc.
+
+GameMain.java -- main class containing main function and game mechanics.
 
 
