@@ -366,6 +366,17 @@ public class GameMain {
 			this.balance = this.balance + this.bet;
 			System.out.printf("Your Current Balance:$%.1f\n", this.balance);
 		}
+		else if(dealerSum == 21){
+			
+			System.out.println("\t\t\t\t#################################");
+			System.out.println("\t\t\t\t#                               #");
+			System.out.println("\t\t\t\t# DEALER's BLACKJACK, YOU LOST  #");
+			System.out.println("\t\t\t\t#                               #");
+			System.out.println("\t\t\t\t#################################\n");
+				 
+			System.out.printf("You lose[1:1]: $%.0f!!\n", this.bet);
+			System.out.printf("Your Current Balance:$%.1f\n", this.balance);
+		}
 		else{
 			
 			System.out.println("\t\t\t\t############");
