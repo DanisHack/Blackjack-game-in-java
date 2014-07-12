@@ -33,6 +33,7 @@ public class Cards {
 	}
 	
 	public int getCardNumber(){
+		
 		return this.cardNum;
 	}
 	
