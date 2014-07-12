@@ -192,7 +192,6 @@ public class GameMain {
 				 dealer.printCardsInHand(true);
 				 
 				 System.out.printf("Dealer's Score:%d\n\n", dealer.getPlayersHandTotal()); 
-				 
 				 blackJack = false;
 			 }
 		}
