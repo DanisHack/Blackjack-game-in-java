@@ -31,7 +31,7 @@ public class GameMain {
 		boolean gameOver = false;
 		
 		System.out.println("Enter Your Name:\n");
-		this.playerName = sc.next();
+		this.playerName = sc.nextLine();
 		
 		System.out.println("\nCongratulations!! "+this.playerName+", you have got 100 complimentary chips for playing. Enjoy!\n");
 		
@@ -43,7 +43,7 @@ public class GameMain {
 		// Game Starts here --->
 		while(this.balance > 0 &&  !gameOver){
 					
-			System.out.println("\n"+this.playerName+", Do you want to Deal or End the game [Enter D or E((or press any letter to End))]??");
+			System.out.println("\n"+this.playerName+", Do you want to DEAL or END the game [Enter 'D' for DEAL & press any other letter to END the game]??");
 			String gameInit = sc.next();
 					
 			if(gameInit.compareToIgnoreCase("D") == 0){
@@ -382,7 +382,7 @@ public class GameMain {
 
 	public static void main(String[] args) {
 		
-		System.out.println("\t\t\t\t#######################################");
+		System.out.println("\n\t\t\t\t#######################################");
 		System.out.println("\t\t\t\t#                                     #");
 		System.out.println("\t\t\t\t#           BLACKJACK 0.1             #");
 		System.out.println("\t\t\t\t# Insight Fellowship Coding Challenge #");
