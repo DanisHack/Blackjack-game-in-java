@@ -10,9 +10,17 @@ How To Run:
 
 Prequisite: JDK1.7
 
+CLI METHOD:
+
 Download jar file from the link: https://www.dropbox.com/s/720k3ou22s9puj4/BlackJack.jar
 
 use command: java -jar /path-to-jar-file/BlackJack.jar
+
+Eclipse:
+
+  - clone repository.
+  - import/add in Eclipse
+  - Build and Run
 
 
 Test Cases:
