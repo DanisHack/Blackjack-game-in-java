@@ -71,8 +71,7 @@ public class GameMain {
 		
 	}
 	
-	
-	
+	// Deal the game
 	private void dealTheGame(){
 		
 		boolean blackjack = false;
@@ -127,14 +126,8 @@ public class GameMain {
 			System.out.printf("Bet:$%.0f\t", this.bet);
 			System.out.printf("Balance:$%.1f\n\n", this.balance);
 			
-			
-		
 			// checking state on initial card -- if BlackJack
 			blackjack = this.checkIfBlackJack();
-			
-			
-			
-			// boolean splitDone = false;
 			
 			while(!youDone || !dealerDone){
 			
@@ -164,6 +157,7 @@ public class GameMain {
 		
 	}
 	
+	// Natural 21 check on initial cards
 	private boolean checkIfBlackJack(){
 		
 		boolean blackJack = false;
@@ -206,6 +200,7 @@ public class GameMain {
 		return blackJack;
 	}
 	
+	// Player's Play Turn
 	private void yourPlay(){
 		
 		String answer;
@@ -247,6 +242,7 @@ public class GameMain {
 		}
 	}
 	
+	// Player's Hit
 	private void hit(){
 		
 		System.out.println("\tYou Choose to Hit.\n");
@@ -271,12 +267,14 @@ public class GameMain {
 		
 	}
 	
+	// Player's Stay
 	private void stay(){
 		
 		System.out.println("\tYou Choose to Stay, Dealer's turn \n");
 		youDone = true;
 	}
 	
+	// Player's Double Down
 	private void doubleDown(){
 		
 		System.out.println("\tYou Choose to Double Down.\n");
@@ -307,6 +305,7 @@ public class GameMain {
 		System.out.println("Now , Dealer's turn \n");
 	}
 	
+	// Dealer's Play Turn
 	private void dealersPlay(){
 		
 		if(dealer.getPlayersHandTotal() < 17){
@@ -337,21 +336,7 @@ public class GameMain {
 		}
 	}
 	
-	/*private void split(){
-		
-		System.out.print(you.splitPossible());
-		you.splitHands();
-		you.addCardToPlayersHand(newDeck.dealingNextCard());
-		// add card to split hand
-		while(!splitDone){
-			
-			
-			
-			
-		}
-	}*/
-	
-	
+	// Deciding a Winner
 	private void decideWinner(){
 		
 		int youSum = you.getPlayersHandTotal();
