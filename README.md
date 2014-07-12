@@ -26,7 +26,14 @@ Test Cases:
 6.	Check  balance>=bet,  for showing Double down option.
 7.	Double down option should not be shown,  after first Hit during a Deal.
 8.	At every point,  bet + balance = initial balance before dealing a hand.
-9.	BlackJack  or Natural 21 is calculated for two card hand, every Deal.
+9.	BlackJack  or Natural 21 is calculated for two card hand, for every Deal.
+10.	Total of cards number in hand is correct
+11.	Queen, King, Jack counted as 10.
+12.	Ace is counted as 11 or 1.
+13.	if 2 Ace, one should count as 1.
+14.	Whenever total of a hand goes above 21 for a player, Ace is counted as one.
+15.	Dealer's turn comes, after Player finishes.
+16.	Check dealer's BlackJack.
 
 
 Note:
